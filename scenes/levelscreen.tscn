@@ -1,0 +1,214 @@
+[gd_scene load_steps=11 format=3 uid="uid://d1w1splfmcjms"]
+
+[ext_resource type="Script" path="res://scripts/levelscreen.gd" id="1_isjwe"]
+[ext_resource type="FontFile" uid="uid://bc7k151xgs1va" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_mpvd1"]
+[ext_resource type="Texture2D" uid="uid://d3seda2l46flm" path="res://Speaker-0.png" id="3_6cmol"]
+[ext_resource type="Shader" path="res://scenes/zaza.gdshader" id="4_c0oha"]
+[ext_resource type="Texture2D" uid="uid://bmqx56awdmiwp" path="res://RepeatPattern.png" id="5_pe6yb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7xhsv"]
+shader = ExtResource("4_c0oha")
+
+[sub_resource type="Theme" id="Theme_r758j"]
+
+[sub_resource type="Animation" id="Animation_5xn8y"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dv0a1"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1052k"]
+_data = {
+"fade_in": SubResource("Animation_5xn8y"),
+"fade_out": SubResource("Animation_dv0a1")
+}
+
+[node name="levelscreen" type="Node"]
+script = ExtResource("1_isjwe")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0383972, 0.0383972, 0.0383972, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.344076, 0.344076, 0.344076, 1)
+material = SubResource("ShaderMaterial_7xhsv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_pe6yb")
+stretch_mode = 1
+
+[node name="mainscreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_r758j")
+
+[node name="Sound" type="TextureButton" parent="mainscreen"]
+layout_mode = 0
+offset_left = 1073.0
+offset_top = 574.0
+offset_right = 1113.0
+offset_bottom = 614.0
+texture_normal = ExtResource("3_6cmol")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 55.0
+offset_top = 179.0
+offset_right = 237.0
+offset_bottom = 362.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_mpvd1")
+theme_override_font_sizes/font_size = 64
+text = "1"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 239.0
+offset_top = 186.0
+offset_right = 404.0
+offset_bottom = 350.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_mpvd1")
+theme_override_font_sizes/font_size = 64
+text = "2"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 406.0
+offset_top = 187.0
+offset_right = 593.0
+offset_bottom = 350.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_mpvd1")
+theme_override_font_sizes/font_size = 64
+text = "3"
+
+[node name="Button4" type="Button" parent="."]
+offset_left = 574.0
+offset_top = 192.0
+offset_right = 748.0
+offset_bottom = 336.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_mpvd1")
+theme_override_font_sizes/font_size = 64
+text = "4"
+
+[node name="Button5" type="Button" parent="."]
+offset_left = 41.0
+offset_top = 574.0
+offset_right = 321.0
+offset_bottom = 614.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_mpvd1")
+theme_override_font_sizes/font_size = 32
+text = "MAIN MENU"
+
+[node name="Button6" type="Button" parent="."]
+offset_left = 713.0
+offset_top = 185.0
+offset_right = 897.0
+offset_bottom = 345.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_mpvd1")
+theme_override_font_sizes/font_size = 64
+text = "5"
+
+[node name="Button7" type="Button" parent="."]
+offset_left = 883.0
+offset_top = 188.0
+offset_right = 1061.0
+offset_bottom = 332.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_mpvd1")
+theme_override_font_sizes/font_size = 64
+text = "6
+"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 478.0
+offset_top = 80.0
+offset_right = 670.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource("2_mpvd1")
+theme_override_font_sizes/font_size = 32
+text = "LEVELS"
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1052k")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="mainscreen/Sound" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="Button6" to="." method="_on_button_6_pressed"]
+[connection signal="pressed" from="Button7" to="." method="_on_button_7_pressed"]
+[connection signal="animation_finished" from="Transition" to="." method="_on_transition_animation_finished"]

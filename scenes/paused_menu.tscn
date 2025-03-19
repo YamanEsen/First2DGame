@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1caf76kjpng"]
+
+[ext_resource type="Script" path="res://scripts/paused_menu.gd" id="1_xldln"]
+[ext_resource type="FontFile" uid="uid://bc7k151xgs1va" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_40c24"]
+
+[sub_resource type="Theme" id="Theme_ylyso"]
+default_font = ExtResource("2_40c24")
+
+[node name="PausedMenu" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xldln")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0.25098, 0.25098, 0.705882)
+
+[node name="Control2" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_ylyso")
+
+[node name="Label" type="Label" parent="Control2"]
+layout_mode = 2
+offset_left = 477.0
+offset_top = 204.0
+offset_right = 669.0
+offset_bottom = 249.0
+theme_override_font_sizes/font_size = 32
+text = "Paused"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 501.0
+offset_top = 264.0
+offset_right = 633.0
+offset_bottom = 288.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_40c24")
+theme_override_font_sizes/font_size = 16
+text = "CONTINUE"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 313.0
+offset_right = 626.0
+offset_bottom = 337.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_40c24")
+theme_override_font_sizes/font_size = 16
+text = "OPTIONS"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 537.0
+offset_top = 356.0
+offset_right = 605.0
+offset_bottom = 380.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("2_40c24")
+theme_override_font_sizes/font_size = 16
+text = "QUIT"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

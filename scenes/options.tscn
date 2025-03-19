@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ctq85lhj2bskp"]
+
+[node name="options" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 200.0
+offset_right = 304.0
+offset_bottom = 223.0
+text = " "

@@ -1,0 +1,148 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5ef6gbmfi4gk"]
+
+[ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_mnsb4"]
+[ext_resource type="Shader" path="res://scenes/zaa.gdshader" id="2_8to8f"]
+[ext_resource type="Texture2D" uid="uid://bmqx56awdmiwp" path="res://RepeatPattern.png" id="3_3itpq"]
+[ext_resource type="FontFile" uid="uid://dyupleayyt587" path="res://assets/fonts/GrapeSoda.ttf" id="3_ss11m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_522j6"]
+shader = ExtResource("2_8to8f")
+
+[sub_resource type="Animation" id="Animation_5xn8y"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_dv0a1"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1052k"]
+_data = {
+"fade_in": SubResource("Animation_5xn8y"),
+"fade_out": SubResource("Animation_dv0a1")
+}
+
+[node name="mainmenu" type="Node"]
+script = ExtResource("1_mnsb4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.332881, 0.332881, 0.332881, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_522j6")
+offset_right = 1154.0
+offset_bottom = 649.0
+texture = ExtResource("3_3itpq")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 164.0
+offset_right = 665.0
+offset_bottom = 232.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("3_ss11m")
+theme_override_font_sizes/font_size = 64
+text = "PLAY"
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 249.0
+offset_right = 725.0
+offset_bottom = 321.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("3_ss11m")
+theme_override_font_sizes/font_size = 64
+text = "SETTINGS"
+
+[node name="Button3" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 538.0
+offset_top = 334.0
+offset_right = 666.0
+offset_bottom = 406.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("3_ss11m")
+theme_override_font_sizes/font_size = 64
+text = "QUİT"
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1052k")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Control/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="animation_finished" from="Transition" to="." method="_on_transition_animation_finished"]

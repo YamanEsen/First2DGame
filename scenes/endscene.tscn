@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://qmw3x0x2mq13"]
+
+[ext_resource type="Script" path="res://scripts/endscene.gd" id="1_tghar"]
+[ext_resource type="Shader" path="res://scenes/zaa.gdshader" id="2_mdwoe"]
+[ext_resource type="Texture2D" uid="uid://bmqx56awdmiwp" path="res://RepeatPattern.png" id="3_hmlvf"]
+[ext_resource type="FontFile" uid="uid://bc7k151xgs1va" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_gpmds"]
+[ext_resource type="FontFile" uid="uid://dyupleayyt587" path="res://assets/fonts/GrapeSoda.ttf" id="4_rbj11"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_522j6"]
+shader = ExtResource("2_mdwoe")
+
+[node name="THEEND" type="Node"]
+script = ExtResource("1_tghar")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.332881, 0.332881, 0.332881, 1)
+texture_repeat = 2
+material = SubResource("ShaderMaterial_522j6")
+offset_right = 1154.0
+offset_bottom = 649.0
+texture = ExtResource("3_hmlvf")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 480.0
+offset_right = 965.0
+offset_bottom = 552.0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("4_gpmds")
+theme_override_font_sizes/font_size = 32
+text = "BACK TO MENU"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 144.0
+offset_right = 800.0
+offset_bottom = 272.0
+theme_override_fonts/font = ExtResource("4_rbj11")
+theme_override_font_sizes/font_size = 128
+text = "THE END"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://2c045uhdwn60"]
+
+[ext_resource type="Script" path="res://scripts/levelchange.gd" id="1_244f4"]
+[ext_resource type="Texture2D" uid="uid://b8l5vtmyl13gq" path="res://assets/sprites/end.png" id="2_tupbe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxsqu"]
+size = Vector2(19.7106, 23.7268)
+
+[node name="levelchange" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_244f4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2909.24, -156.974)
+shape = SubResource("RectangleShape2D_gxsqu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2909.23, -162.759)
+scale = Vector2(0.453804, 0.54596)
+texture = ExtResource("2_tupbe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
